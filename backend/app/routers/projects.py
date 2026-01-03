@@ -23,3 +23,11 @@ def create_project(project_in: ProjectCreate, db: Session = Depends(get_db)):
 def list_projects(skip: int = 0, limit: int = 100, environment: Optional[str] = None, db: Session = Depends(get_db)):
     projects = project_service.list_projects(db, skip=skip, limit=limit, environment=environment)
     return projects
+
+
+@router.get("/{project_id}", response_model=ProjectRead, tags=["projects"])
+def get_project(project_id: int, db: Session = Depends(get_db)):
+    project = project_service.get_project(db, project_id)
+    if not project:
+        raise HTTPException(status_code=404, detail="Project not found")
+    return project

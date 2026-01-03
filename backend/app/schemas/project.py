@@ -27,4 +27,4 @@ class ProjectRead(ProjectBase):
     latest_scan_summary: Optional[dict[str, Any]] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True

@@ -16,4 +16,4 @@ class ScanRead(BaseModel):
     summary: Optional[dict] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True

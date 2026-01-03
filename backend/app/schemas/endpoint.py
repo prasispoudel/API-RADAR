@@ -15,4 +15,18 @@ class EndpointRead(BaseModel):
     last_latency_ms: Optional[float] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True
+
+
+class EndpointCreate(BaseModel):
+    path: str
+    method: str
+    requires_auth: Optional[bool] = False
+    source: Optional[str] = None
+
+
+class EndpointUpdate(BaseModel):
+    path: Optional[str] = None
+    method: Optional[str] = None
+    requires_auth: Optional[bool] = None
+    source: Optional[str] = None

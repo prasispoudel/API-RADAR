@@ -29,3 +29,7 @@ def list_projects(db: Session, skip: int = 0, limit: int = 100, environment: Opt
     if environment:
         q = q.filter(Project.environment == environment)
     return q.offset(skip).limit(limit).all()
+
+
+def get_project(db: Session, project_id: int) -> Optional[Project]:
+    return db.query(Project).filter(Project.id == project_id).first()
