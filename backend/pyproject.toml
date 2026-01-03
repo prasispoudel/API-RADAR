@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "api-test-backend"
+version = "0.1.0"
+description = "Backend service for API Test Tool (FastAPI)"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.95"
+uvicorn = "^0.22"
+SQLAlchemy = "^1.4"
+httpx = "^0.24"
+alembic = "^1.11"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
