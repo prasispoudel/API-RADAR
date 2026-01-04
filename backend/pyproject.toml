@@ -10,6 +10,17 @@ uvicorn = "^0.22"
 SQLAlchemy = "^1.4"
 httpx = "^0.24"
 alembic = "^1.11"
+APScheduler = "^3.10"
+python-dotenv = "^1.0"
+rq = "^1.15"
+redis = "^4.5"
+python-json-logger = "^2.0"
+opentelemetry-api = "^1.20"
+opentelemetry-sdk = "^1.20"
+opentelemetry-instrumentation-fastapi = "^0.41"
+opentelemetry-instrumentation-sqlalchemy = "^0.41"
+opentelemetry-instrumentation-redis = "^0.41"
+opentelemetry-exporter-otlp = "^1.20"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

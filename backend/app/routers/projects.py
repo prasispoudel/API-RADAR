@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from app.schemas.project import ProjectCreate, ProjectRead
 from app.db.session import get_db
 from app.services import project_service
+from app.services import discovery_service
 
 router = APIRouter()
 
@@ -31,3 +32,13 @@ def get_project(project_id: int, db: Session = Depends(get_db)):
     if not project:
         raise HTTPException(status_code=404, detail="Project not found")
     return project
+
+
+@router.post("/{project_id}/discover", tags=["projects"])
+def trigger_discovery(project_id: int, db: Session = Depends(get_db)):
+    project = project_service.get_project(db, project_id)
+    if not project:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+    summary = discovery_service.discover_endpoints_for_project(db, project)
+    return summary
