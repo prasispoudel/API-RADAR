@@ -154,5 +154,88 @@ Then open the printed URL (e.g. `http://localhost:5173`) in your browser.
 
 ## License
 
+MIT (or your chosen license)
+
+# API Radar (Backend)
+
+API Radar is a FastAPI + PostgreSQL backend that performs pattern-based probing of common REST endpoints for a given base URL, recording availability, status codes, response times, and basic response structure. Projects can include optional authentication (API key header or Bearer token), and scan histories are persisted for later review.
+
+## Features (current)
+
+- Pattern-based endpoint probing of common REST paths (e.g., auth, users, admin)
+- Async HTTP checks (availability, status code, latency)
+- Basic response shape check (JSON object/array)
+- Per-project configuration (base URL, auth headers)
+- Persistence of scan/test results in PostgreSQL
+
+## Not Implemented (yet)
+
+- OpenAPI/Swagger parsing
+- Documentation crawling
+- ML-based anomaly detection
+- React/frontend UI
+- Docker or docker-compose setup
+- Background workers / Redis queue
+
+## Tech Stack
+
+- FastAPI
+- SQLAlchemy
+- PostgreSQL
+- HTTP client for probing (async)
+
+## Setup
+
+Prerequisites:
+- Python 3.11+
+- PostgreSQL running and reachable
+
+Steps:
+```bash
+git clone https://github.com/<your-username>/api-radar.git
+cd api-radar
+python -m venv .venv
+. .venv/Scripts/activate    # Windows
+pip install -r requirements.txt
+```
+
+Set environment (example):
+```env
+DATABASE_URL=postgresql+psycopg2://user:password@localhost:5432/api_radar
+```
+
+Create the database (if not existing):
+```sql
+CREATE DATABASE api_radar;
+```
+
+Start the API:
+```bash
+uvicorn main:app --reload
+```
+
+API docs:
+- http://localhost:8000/docs
+- http://localhost:8000/redoc
+
+## Usage (high level)
+
+1) Create or choose a project with a base URL and optional auth (API key header or Bearer token).
+2) Trigger a scan to probe common endpoints for that project.
+3) Retrieve stored results to review status codes and latencies.
+
+## Roadmap
+
+- OpenAPI/Swagger-based discovery and validation
+- Documentation crawling for endpoint discovery
+- Scheduled scans and richer reporting/export
+- ML-based anomaly detection on historical metrics
+- React frontend dashboard
+- Docker-based one-command setup
+
+## License
+
+MIT (or your chosen license)
+
 
 
